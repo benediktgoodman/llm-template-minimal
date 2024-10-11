@@ -11,7 +11,7 @@ package-mode = false
 python = ">=3.10,<3.13"
 ipykernel = ">=6.15.3"
 et-xmlfile = "1.1.0"
-torch = {version = "2.4.0", source = "pytorch_gpu"}
+torch = "^2.4"
 torchvision = "0.19.0"
 vllm = "0.6.2"
 pypdf = "^5.0.1"
