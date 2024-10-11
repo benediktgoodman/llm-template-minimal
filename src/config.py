@@ -1,6 +1,14 @@
-from functions.config_assets import AssetConfig
+import os
 from pathlib import Path
 
+script_path = os.getcwd()
+for folder_level in range(50):
+    if "pyproject.toml" in os.listdir(): 
+        break
+    os.chdir("../")
+    
+from src.functions.config_assets import AssetConfig  # noqa: E402
+os.chdir(script_path)
 # Looks for pyproject.toml, gets absolute path as string
 root = Path(AssetConfig.find_project_root())
 
@@ -13,7 +21,7 @@ _vectorstore = root.joinpath('vectorstore').as_posix()
 _models = root.joinpath('models').as_posix()
 
 # config module we will be calling upon elsewhere
-config = AssetConfig(
+asset_config = AssetConfig(
     
     # Change these to change models in the system
     # Will affect which models are downloaded in model_download.py

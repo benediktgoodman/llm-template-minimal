@@ -3,14 +3,14 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-from config import config
+from config import asset_config
 
 # Loads env where we can get hf_token saved by user
 load_dotenv()
 
 # Makes sure download folder exists if we're working locally
-if config.is_cloud_uri(config.models_dir) is False:
-    Path(config.models_dir).mkdir(exist_ok=True)
+if asset_config.is_cloud_uri(asset_config.models_dir) is False:
+    Path(asset_config.models_dir).mkdir(exist_ok=True)
 
 # Gets hf-token from dotenv
 hf_token = os.getenv('HUGGINGFACE_TOKEN')
@@ -19,5 +19,5 @@ hf_token = os.getenv('HUGGINGFACE_TOKEN')
 login(token=hf_token, add_to_git_credential=True)
 
 # Download models
-snapshot_download(config.tokenizer, cache_dir=config.models_dir, token=hf_token)
-snapshot_download(config.llm_model, cache_dir=config.models_dir, token=hf_token)
+snapshot_download(asset_config.tokenizer, cache_dir=asset_config.models_dir, token=hf_token)
+snapshot_download(asset_config.llm_model, cache_dir=asset_config.models_dir, token=hf_token)

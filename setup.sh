@@ -18,3 +18,4 @@ echo "You can access it in your Python scripts using python-dotenv and os.getenv
 
 # Downloads model and scraped data
 python3 src/model_download.py
+pytest tests/test_cuda_availability.py
