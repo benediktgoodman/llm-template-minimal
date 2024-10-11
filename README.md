@@ -42,7 +42,7 @@ The `AssetConfig` class in `src/config_assets.py` manages paths and settings thr
 Example configuration in `src/config.py`:
 
 ```python
-config = AssetConfig(
+asset_config = AssetConfig(
     llm_model='openai-community/gpt2',
     tokenizer='sentence-transformers/all-MiniLM-L6-v2',
     data_dir='gs://your-bucket/data',
@@ -58,15 +58,15 @@ Note: If using cloud storage, you'll need to add appropriate cloud SDK dependenc
 To use the configuration in other modules or scripts, import it from `src/config.py`. Here's an example from `model_download.py`:
 
 ```python
-from config import config
+from config import asset_config
 
 # Now you can use the config object
-if config.is_cloud_uri(config.models_dir) is False:
-    Path(config.models_dir).mkdir(exist_ok=True)
+if config.is_cloud_uri(asset_config.models_dir) is False:
+    Path(asset_config.models_dir).mkdir(exist_ok=True)
 
 # Download models
-snapshot_download(config.tokenizer, cache_dir=config.models_dir, token=hf_token)
-snapshot_download(config.llm_model, cache_dir=config.models_dir, token=hf_token)
+snapshot_download(asset_config.tokenizer, cache_dir=asset_config.models_dir, token=hf_token)
+snapshot_download(asset_config.llm_model, cache_dir=asset_config.models_dir, token=hf_token)
 ```
 
 This approach ensures consistent configuration across your project.
