@@ -9,6 +9,7 @@ for folder_level in range(50):
     
 from src.functions.config_assets import AssetConfig  # noqa: E402
 os.chdir(script_path)
+
 # Looks for pyproject.toml, gets absolute path as string
 root = Path(AssetConfig.find_project_root())
 
