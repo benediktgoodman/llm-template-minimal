@@ -49,9 +49,9 @@ class AssetConfig(BaseModel):
     vectorstore_dir: str = Field(..., description="Path or URI to the vectorstore directory")
     llm_model: str = Field(..., description="Name or path of the language model to use")
     tokenizer: str = Field(..., description="Name or path of the tokenizer to use")
-
-    class Config:
-        frozen = True  # This makes all attributes read-only
+    
+    # Ensures immutability of attributes in class
+    model_config = {'frozen': True}
         
     @staticmethod
     def find_project_root() -> str:
